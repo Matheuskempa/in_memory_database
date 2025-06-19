@@ -11,7 +11,7 @@ services:
   worker_engine:
     container_name: worker_engine
     build:
-      context: ./worker 
+      context: ./worker_engine
     depends_on:
       - redis
       - dw
