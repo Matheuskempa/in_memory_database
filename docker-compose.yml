@@ -1,9 +1,9 @@
 services:
 
-  worker:
-    container_name: workerpy
+  worker_py:
+    container_name: worker_py
     build:
-      context: ./worker 
+      context: ./worker_py
     depends_on:
       - redis
       - dw
