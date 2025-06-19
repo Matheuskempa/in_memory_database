@@ -1,0 +1,63 @@
+services:
+
+  worker:
+    container_name: workerpy
+    build:
+      context: ./worker 
+    depends_on:
+      - redis
+      - postgres
+
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: app_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+      - ./postgres:/docker-entrypoint-initdb.d
+
+  redis:
+    image: redislabs/redisgears
+    container_name: redis
+    ports:
+      - "6379:6379"
+    depends_on:
+      - postgres
+
+
+  fastapi:
+    build:
+      context: ./fastapi
+    container_name: fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - redis
+      - postgres
+    volumes:
+      - ./fastapi:/app
+
+  metabase:
+    image: metabase/metabase:latest
+    container_name: metabase
+    ports:
+      - "3000:3000"
+    environment:
+      MB_DB_TYPE: postgres
+      MB_DB_DBNAME: app_db
+      MB_DB_PORT: 5432
+      MB_DB_USER: admin
+      MB_DB_PASS: admin
+      MB_DB_HOST: postgres
+    depends_on:
+      - postgres
+
+volumes:
+  redis_data:
+  redisgears_data:
+  pg_data:
