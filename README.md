@@ -4,6 +4,7 @@
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.95-green.svg)](https://fastapi.tiangolo.com/)
 [![Redis](https://img.shields.io/badge/Redis-7.0-orange.svg)](https://redis.io/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-15-blue.svg)](https://www.postgresql.org/)
+[![Metabase](https://img.shields.io/badge/Metabase-Dashboard-blueviolet.svg)](https://www.metabase.com/)
 
 ---
 
@@ -22,6 +23,7 @@ O sistema permite criar, consultar e deletar perguntas e respostas, registrando 
 - Registro de eventos em Redis Streams (`stream_dados`)
 - Worker em Python para consumir eventos do stream e persistir no PostgreSQL
 - API RESTful implementada com FastAPI
+- Visualização dos dados via Metabase
 - Monitoramento básico da saúde da API
 
 ---
@@ -35,6 +37,7 @@ O sistema permite criar, consultar e deletar perguntas e respostas, registrando 
 - Docker & Docker Compose
 - psycopg2 (driver PostgreSQL para Python)
 - redis-py (cliente Redis para Python)
+- Metabase
 
 ---
 
@@ -60,10 +63,24 @@ docker compose up --build
 
 3. Acesse a API em:
 ```bash
-docker compose up --build
 http://localhost:8000
-
 ```
+
+4. Acesse o Metabase em:
+```bash
+http://localhost:3000
+```
+Na primeira vez, crie um usuário e configure a conexão com o banco PostgreSQL usando os dados abaixo:
+
+- **Host**: `postgres`
+- **Porta**: `5432`
+- **Usuário**: `postgres`
+- **Senha**: `postgres`
+- **Database**: `questions_db`
+
+Assim, você poderá criar dashboards e relatórios com base nos dados persistidos.
+
+---
 
 ## 📦 Endpoints principais da API
 
@@ -100,6 +117,8 @@ http://localhost:8000
 - `DELETE /answers`  
   Deleta todas as respostas.
 
+---
+
 ## 🧱 Estrutura dos dados
 
 ### Redis
@@ -117,24 +136,33 @@ http://localhost:8000
 - Tabela `dados` que armazena os eventos consumidos do stream, com campos:
 
   - `id` (serial)
-
   - `metodo` (texto, ex: `create_question` ou `create_answer`)
-
   - `conteudo` (jsonb, com os dados da pergunta ou resposta)
-
   - `criado_em` (timestamp automático)
 
-### ⚙️ Worker de processamento
+---
+
+## ⚙️ Worker de processamento
 
 - Script Python (`worker.py`) conecta no Redis e PostgreSQL.
-
 - Consome eventos do stream `stream_dados`.
-
 - Persiste eventos no PostgreSQL para garantir durabilidade e análises futuras.
+
+---
+
+## 📊 Metabase - Visualização dos dados
+
+- O Metabase é uma ferramenta de BI incluída no projeto para facilitar a visualização dos dados.
+- Após subir os containers, acesse `http://localhost:3000` para configurar o Metabase e conectar ao PostgreSQL.
+- É possível criar dashboards personalizados com base nos dados persistidos.
+
+---
 
 ## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+
+---
 
 # 🙋‍♂️ Contato
 
