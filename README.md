@@ -65,14 +65,14 @@ http://localhost:8000
 
 ```
 
-# 📦 Endpoints principais da API
+## 📦 Endpoints principais da API
 
-## Health check
+### Health check
 
 - `GET /`  
   Retorna mensagem simples confirmando que a API está online.
 
-## Perguntas (question)
+### Perguntas (question)
 
 - `POST /question`  
   Cria uma pergunta. Envia a pergunta para o Redis e registra o evento no stream.
@@ -89,7 +89,7 @@ http://localhost:8000
 - `DELETE /questions`  
   Deleta todas as perguntas.
 
-## Respostas (answer)
+### Respostas (answer)
 
 - `POST /answer`  
   Cria uma resposta, grava no Redis e adiciona evento no stream.
