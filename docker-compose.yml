@@ -16,6 +16,7 @@ services:
       - redis
       - dw
       - fastapi
+      - worker_py
 
   postgres:
     image: postgres:15
