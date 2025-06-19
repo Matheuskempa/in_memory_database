@@ -51,12 +51,12 @@ O sistema permite criar, consultar e deletar perguntas e respostas, registrando 
 ```bash
 git clone https://github.com/Matheuskempa/in_memory_database.git
 cd in_memory_database
-
+```
 
 2. Rode os containers com Docker Compose (certifique-se que o arquivo docker-compose.yml está configurado):
 ```bash
 docker compose up --build
-
+```
 
 3. Acesse a API em:
 ```bash
