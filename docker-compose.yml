@@ -9,7 +9,7 @@ services:
       - dw
 
   worker_engine:
-    container_name: workerpy
+    container_name: worker_engine
     build:
       context: ./worker 
     depends_on:
