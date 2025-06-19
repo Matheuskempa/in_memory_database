@@ -22,7 +22,7 @@ while True:
     try:
         conn_postgres = psycopg2.connect(
             host=IP_CONTAINER_POSTGRES,
-            port=5430,
+            port=5432,
             user='admin',
             password='admin',
             dbname='app_dw'
