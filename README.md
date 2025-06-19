@@ -100,9 +100,9 @@ http://localhost:8000
 - `DELETE /answers`  
   Deleta todas as respostas.
 
-# 🧱 Estrutura dos dados
+## 🧱 Estrutura dos dados
 
-## Redis
+### Redis
 
 - Perguntas e respostas são armazenadas em **Hashes**, com chaves no formato:
 
@@ -112,7 +112,7 @@ http://localhost:8000
 
 - Eventos de criação de perguntas e respostas são enviados para o **Stream Redis** chamado `stream_dados`.
 
-## PostgreSQL
+### PostgreSQL
 
 - Tabela `dados` que armazena os eventos consumidos do stream, com campos:
 
@@ -124,7 +124,7 @@ http://localhost:8000
 
   - `criado_em` (timestamp automático)
 
-# ⚙️ Worker de processamento
+### ⚙️ Worker de processamento
 
 - Script Python (`worker.py`) conecta no Redis e PostgreSQL.
 
@@ -132,7 +132,7 @@ http://localhost:8000
 
 - Persiste eventos no PostgreSQL para garantir durabilidade e análises futuras.
 
-# 📄 Licença
+## 📄 Licença
 
 Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
 
