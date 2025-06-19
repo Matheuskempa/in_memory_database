@@ -2,7 +2,7 @@ import time
 import requests
 
 # Endpoint da sua API FastAPI
-API_URL = "http://localhost:8000"
+API_URL = "http://fastapi:8000"
 
 # Perguntas
 questions = [
@@ -171,6 +171,8 @@ answers = [
   {"question_id":10, "alternativa_escolhida":"d", "datahora":"2024-01-10T10:15:00", "usuario":"user4", "nro_tentativa":1}
 ]
 
+print("Preparando para enviar perguntas...")
+time.sleep(10)
 # Envia perguntas
 print("Enviando perguntas...")
 for q in questions:
