@@ -4,7 +4,7 @@ import json
 import time
 
 IP_CONTAINER_REDIS = "redis"
-IP_CONTAINER_POSTGRES = "postgres"
+IP_CONTAINER_POSTGRES = "dw"
 
 # Conectar Redis
 while True:
@@ -22,10 +22,10 @@ while True:
     try:
         conn_postgres = psycopg2.connect(
             host=IP_CONTAINER_POSTGRES,
-            port=5432,
+            port=5430,
             user='admin',
             password='admin',
-            dbname='app_db'
+            dbname='app_dw'
         )
         conn_postgres.autocommit = True
         print("Conectado ao Postgres!")
