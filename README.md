@@ -72,11 +72,11 @@ http://localhost:3000
 ```
 Na primeira vez, crie um usuário e configure a conexão com o banco PostgreSQL usando os dados abaixo:
 
-- **Host**: `postgres`
+- **Host**: `dw`
 - **Porta**: `5432`
-- **Usuário**: `postgres`
-- **Senha**: `postgres`
-- **Database**: `questions_db`
+- **Usuário**: `admin`
+- **Senha**: `admin`
+- **Database**: `questions_dw`
 
 Assim, você poderá criar dashboards e relatórios com base nos dados persistidos.
 
@@ -138,7 +138,7 @@ Assim, você poderá criar dashboards e relatórios com base nos dados persistid
   - `id` (serial)
   - `metodo` (texto, ex: `create_question` ou `create_answer`)
   - `conteudo` (jsonb, com os dados da pergunta ou resposta)
-  - `criado_em` (timestamp automático)
+  - `data_requisicao` (timestamp automático)
 
 ---
 
