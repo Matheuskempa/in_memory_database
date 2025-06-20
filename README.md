@@ -76,7 +76,7 @@ Na primeira vez, crie um usuário e configure a conexão com o banco PostgreSQL 
 - **Porta**: `5432`
 - **Usuário**: `admin`
 - **Senha**: `admin`
-- **Database**: `questions_dw`
+- **Database**: `app_dw`
 
 Assim, você poderá criar dashboards e relatórios com base nos dados persistidos.
 
