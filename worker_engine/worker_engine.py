@@ -1,5 +1,26 @@
 import time
 import requests
+import psycopg2
+
+# Esperar até o DW ficar acessível
+
+IP_CONTAINER_POSTGRES = "dw"
+
+while True:
+    try:
+        conn_postgres = psycopg2.connect(
+            host=IP_CONTAINER_POSTGRES,
+            port=5432,
+            user='admin',
+            password='admin',
+            dbname='app_dw'
+        )
+        conn_postgres.autocommit = True
+        print("Conectado ao Postgres!")
+        break
+    except Exception as e:
+        print(f"Erro ao conectar no Postgres: {e}. Tentando novamente em 3s...")
+    time.sleep(3)
 
 # Endpoint da sua API FastAPI
 API_URL = "http://fastapi:8000"
@@ -181,7 +202,7 @@ for q in questions:
         print(f"[Pergunta {q['question_id']}] Status: {res.status_code} - {res.text}")
     except Exception as e:
         print(f"Erro ao enviar pergunta {q['question_id']}: {e}")
-    time.sleep(1)
+    time.sleep(10)
 
 # Envia respostas
 print("Enviando respostas...")
@@ -191,4 +212,4 @@ for a in answers:
         print(f"[Resposta Q{a['question_id']} de {a['usuario']}] Status: {res.status_code} - {res.text}")
     except Exception as e:
         print(f"Erro ao enviar resposta: {e}")
-    time.sleep(1)
+    time.sleep(10)

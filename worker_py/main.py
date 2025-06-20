@@ -38,7 +38,6 @@ print("Iniciando consumo do stream...")
 last_id = '0-0'
 
 while True:
-    print("loop")
     try:
         response = redis_client.xread({'stream_dados': last_id}, count=10, block=1000)
         
